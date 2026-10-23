@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcade Portal</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10101b;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:28px 16px;background:#19192b}
+h1{margin:0 0 10px;color:#a78bfa;font-size:36px}
+p{color:#c4b5fd}
+#games{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px;padding:20px;max-width:1100px;margin:auto}
+a{display:block;padding:22px 12px;text-align:center;text-decoration:none;color:white;background:#24243b;border:1px solid #484064;border-radius:12px;font-weight:bold}
+a:hover{background:#514080;transform:translateY(-2px)}
+#player{display:none;position:fixed;inset:0;background:#090910;z-index:5}
+#player iframe{width:100%;height:calc(100% - 48px);border:0;background:white}
+#close{height:48px;width:100%;border:0;background:#7c3aed;color:white;font-size:18px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<h1>🎮 ARCADE PORTAL</h1>
+<p>Pick a game and play!</p>
+</header>
+<div id="games"></div>
+<div id="player">
+<button id="close" onclick="document.getElementById('player').style.display='none';document.getElementById('frame').src='';">✕ CLOSE GAME</button>
+<iframe id="frame" allow="fullscreen" allowfullscreen></iframe>
+</div>
+<script>
+const games=["2048","air-hockey","anagram","angry-birds","ant-colony","ascii-art","asteroids","ball-sort","battleship","blackjack","block-puzzle","boggle","bouncing-balls","chinese-chess","color-memory","color-puzzle","color-sort","connect-four","crossword","dice-war","dino-run","domino","duck-hunt","dungeon","emoji-puzzle","endless-runner","escape-room","flappy-bird","fractal","freecell","frogger","fruit-ninja","galaga","gravity-sim","hangman","hex-strategy","idle-clicker","jigsaw","kaleidoscope","kingdom-builder","laser-cannon","lights-out","mahjong","mastermind","match3","maze-runner","memory-match","minesweeper","mini-golf","missile-command","monster-catcher","music-seq","ninja","nonogram","number-memory","pacman","particle-system","pattern-memory","pendulum","pipe-puzzle","pixel-art","platformer","pong-2p","pong","quiz","ragdoll","reaction-time","reversi","rhythm-tap","rock-paper-scissors","sand-sim","simon-says","sliding-puzzle","snake","sokoban","solitaire","space-invaders","space-shooter","speed-math","spelling-bee","spirograph","sudoku","tank-battle","tetris","text-adventure","tic-tac-toe-2p","tic-tac-toe","tower-defense","tower-of-hanoi","treasure-hunt","turret","typing-speed","video-poker","visual-memory","visual-novel","water-flow","whack-a-mole","word-chain","word-search","wordle"];
+const container=document.getElementById("games");
+games.forEach(name=>{
+const link=document.createElement("a");
+link.href="#";
+link.textContent=name.replaceAll("-"," ").replace(/\b\w/g,c=>c.toUpperCase());
+link.onclick=()=>{
+document.getElementById("player").style.display="block";
+document.getElementById("frame").src=name+"/index.html";
+return false;
+};
+container.appendChild(link);
+});
+</script>
+</body>
+</html>
